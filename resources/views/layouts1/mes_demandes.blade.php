@@ -230,6 +230,82 @@
 
 <!-- content -->
 
+<!-- CONTENT -->
+<div class="techwave_fn_content">
+    
+    <!-- PAGE (all pages go inside this div) -->
+    <div class="techwave_fn_page">
+        
+        <!-- Mes Demandes Page -->
+<!-- Ajouter un style en ligne ou une classe CSS -->
+<style>
+    .container {
+        text-align: center; /* Centre le contenu horizontalement */
+    }
+
+    .table-container {
+        display: inline-block; /* Pour que le conteneur prenne la largeur minimale requise */
+        background-color: #6a0dad; /* Couleur de fond violet */
+        padding: 20px; /* Espacement intérieur */
+        border-radius: 8px; /* Coins arrondis */
+        color: white; /* Couleur du texte */
+        text-align: left; /* Texte à gauche dans le tableau */
+    }
+
+    .table-container table {
+        width: 100%; /* Prend toute la largeur disponible dans le conteneur */
+        border-collapse: collapse; /* Fusionne les bordures du tableau */
+    }
+
+    .table-container th, .table-container td {
+        border: 1px solid #fff; /* Bordure blanche pour les cellules du tableau */
+        padding: 10px; /* Espacement dans les cellules */
+    }
+
+    .table-container th {
+        background-color: #4b0082; /* Une teinte plus sombre de violet pour les en-têtes */
+    }
+</style>
+
+
+<div class="container">
+    <h2 class="form-title">Mes Demandes</h2>
+
+    <br>
+
+    
+
+    @if($demandes->isEmpty())
+        <p>Aucune demande trouvée.</p>
+    @else
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Catégorie</th>
+                    <th>Date de Soumission</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($demandes as $demande)
+                    <tr>
+                        <td>{{ $demande->titre }}</td>
+                        <td>{{ $demande->description }}</td>
+                        <td>{{ $demande->categorie }}</td>
+                        <td>{{ date('d/m/Y H:i', strtotime($demande->date_soumission)) }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
+</div>
+
+        
+    </div>
+    <!-- !PAGE (all pages go inside this div) -->
+</div>
+<!-- !CONTENT -->
 
 
 <!-- content -->

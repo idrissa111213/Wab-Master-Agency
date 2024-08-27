@@ -280,7 +280,7 @@
                     
 
 <div class="user__interests">
-    <h4 class="title">Quels sont vos centres d'intérêt ?</h4>
+    <h4 class="title">Quels sont vos thématiques?</h4>
     <div class="fn__options_list">
         <ul>
             <li>

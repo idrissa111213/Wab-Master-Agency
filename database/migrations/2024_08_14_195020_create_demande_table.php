@@ -24,14 +24,10 @@ return new class extends Migration
             $table->enum('statut', ['ouvert', 'en cours', 'résolu'])->default('ouvert');
             $table->foreignId('id_utilisateur')->constrained('users');
             $table->binary('document')->nullable();
-            $table->integer('id_categorie')->nullable();
+            $table->timestamps(); // Ajouter cette ligne pour les colonnes created_at et updated_at
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('demande');

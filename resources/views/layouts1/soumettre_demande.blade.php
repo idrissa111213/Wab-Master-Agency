@@ -234,30 +234,30 @@
 <div class="techwave_fn_content">
     <!-- PAGE (all pages go inside this div) -->
     <div class="techwave_fn_page">
-        
         <!-- Home Page -->
         <div class="container">
             <h2 class="form-title">Soumettre une Demande</h2>
-            <form action="/submit-request" method="POST" enctype="multipart/form-data">
+            <!-- Formulaire de demande -->
+            <form action="{{ route('demande.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Nom Complet -->
                 <div class="form-group">
                     <label for="full_name">Nom Complet</label>
-                    <input type="text" class="form-control" id="full_name" name="full_name" required>
+                    <input type="text" class="form-control" id="full_name" name="full_name" value="{{ Auth::user()->name }}" required>
                 </div>
                 <br>
-                
+
                 <!-- Email -->
                 <div class="form-group">
                     <label for="email">Adresse Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
                 </div>
                 <br>
-                
-                <!-- Choix d'Intérêts -->
+
+                <!-- Intérêts -->
                 <div class="form-group">
-                    <label for="interests">Choisissez vos intérêts :</label>
-                    <select id="interests" name="interests" onchange="toggleOtherField()" class="form-select">
+                    <label for="interests">Choisissez vos thématiques :</label>
+                    <select id="interests" name="interests" onchange="toggleOtherField()" required>
                         <option value="">Sélectionner...</option>
                         <option value="Education">Éducation</option>
                         <option value="Santé">Santé</option>
@@ -266,20 +266,20 @@
                         <option value="Justice et Droits">Justice et Droits</option>
                         <option value="Environnement">Environnement</option>
                         <option value="Culture et Loisirs">Culture et Loisirs</option>
-                        <option value="Entrepreneuriat et développement économique">Entrepreneuriat et développement économique</option>
+                        <option value="Entreprenariat et développement économique">Entreprenariat et développement économique</option>
                         <option value="Citoyenneté et citoyenne">Citoyenneté et citoyenne</option>
                         <option value="Autre">Autre</option>
                     </select>
                 </div>
                 <br>
 
-                <!-- Champ pour spécifier autre -->
-                <div id="otherField" class="form-group" style="display: none;">
+                <!-- Autre Intérêt -->
+                <div id="otherField" style="display: none;">
                     <label for="otherInterest">Veuillez spécifier :</label>
                     <input type="text" class="form-control" id="otherInterest" name="otherInterest">
                 </div>
                 <br>
-                
+
                 <!-- Objet de la Demande -->
                 <div class="form-group">
                     <label for="subject">Objet de la Demande</label>
@@ -299,35 +299,23 @@
                     <label for="attachment">Pièce Jointe (facultatif)</label>
                     <input type="file" class="form-control" id="attachment" name="attachment">
                 </div>
-                <br>
 
                 <!-- Bouton de Soumission -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary custom-btn">Soumettre la Demande</button>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" style="background-color: #6a0dad; color: white;">Soumettre la Demande</button>
                 </div>
             </form>
+
+            <!-- Message de succès -->
+            @if(session('success'))
+                <div class="alert alert-success" role="alert" style="text-align: center; margin-top: 20px;">
+                    {{ session('success') }}
+                </div>
+            @endif
         </div>
         <!-- !Home Page -->
-        
     </div>
-    <!-- !PAGE (all pages go inside this div) -->
-    
-    <!-- FOOTER (inside the content) -->
-    <footer class="techwave_fn_footer">
-        <div class="techwave_fn_footer_content">
-            <div class="copyright">
-                <p><script>document.write(new Date().getFullYear())</script>© SRBThemes</p>
-            </div>
-            <div class="menu_items">
-                <ul>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    <!-- !FOOTER (inside the content) -->
-    
+    <!-- !PAGE -->
 </div>
 <!-- !CONTENT -->
 
@@ -344,6 +332,27 @@ function toggleOtherField() {
     }
 }
 </script>
+
+        
+        
+        <!-- FOOTER (inside the content) -->
+        <footer class="techwave_fn_footer">
+            <div class="techwave_fn_footer_content">
+                <div class="copyright">
+                    <p><script>document.write(new Date().getFullYear())</script>© SRBThemes</p>
+                </div>
+                <div class="menu_items">
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- !FOOTER (inside the content) -->
+        
+    </div>
+    <!-- !CONTENT -->
 
 <!-- content -->
 

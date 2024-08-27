@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\AdminController; // Assurez-vous d'inclure le contrôleur AdminController
+use App\Http\Controllers\AdminController; 
+use App\Http\Controllers\RequestController;
 
 // Route pour la page d'accueil
 Route::get('/', function () {
@@ -55,10 +56,7 @@ Route::get('/dashboard', function () {
 Route::get('/layouts1/base', function () {
     return view('layouts1.base');
 })->name('layouts1.base');
-
-Route::get('/layouts1/mes_demandes', function () {
-    return view('layouts1.mes_demandes');
-})->name('layouts1.mes_demandes');
+Route::get('/layouts1/mes_demandes', [RequestController::class, 'index'])->name('layouts1.mes_demandes');
 
 Route::get('/layouts1/vote', function () {
     return view('layouts1.mes_votes');
@@ -102,3 +100,8 @@ Route::get('/layouts1/sedéconnecter', function () {
 Route::get('/layouts1/profil', function () {
     return view('layouts1.profil');
 })->name('layouts1.profil');
+
+
+
+
+Route::post('/demande/soumettre', [RequestController::class, 'store'])->name('demande.store');
